@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sommerfest 2026 – Sandefjord Whites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1D428A;
+      --blue-dark: #0d2456;
+      --yellow: #FFCD00;
+      --white: #FAFAF8;
+      --cream: #F5F0E8;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,205,0,0.03) 40px,
+          rgba(255,205,0,0.03) 41px
+        );
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--blue-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      animation: fadeDown 0.6s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      color: var(--yellow);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      letter-spacing: 1px;
+      animation: fadeDown 0.6s 0.2s ease both;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 2rem auto 0;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+
+    /* ── MAIN CARD ── */
+    .card-wrap {
+      max-width: 700px;
+      margin: -2rem auto 3rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(13,36,86,0.15);
+      overflow: hidden;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    /* ── INFO GRID ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .info-item {
+      padding: 2rem 2rem 1.8rem;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    .info-item:nth-child(odd) {
+      border-right: 1px solid #eee;
+    }
+
+    .info-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .info-label {
+      font-size: 0.7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.3;
+    }
+
+    .info-sub {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 0.2rem;
+    }
+
+    /* ── PROGRAM SECTION ── */
+    .program {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .program-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .program-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .program-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 2px solid var(--blue);
+      flex-shrink: 0;
+    }
+
+    .program-text {
+      font-size: 0.97rem;
+      color: #333;
+    }
+
+    /* ── PAYMENT SECTION ── */
+    .payment {
+      background: var(--blue);
+      padding: 2rem;
+      color: white;
+    }
+
+    .payment .section-title {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .payment-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .payment-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .vipps-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,205,0,0.3);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .vipps-icon { font-size: 1.8rem; }
+
+    .vipps-info { flex: 1; }
+
+    .vipps-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .vipps-number {
+      font-size: 0.9rem;
+      color: var(--yellow);
+      font-family: 'Lato', monospace;
+      letter-spacing: 1px;
+    }
+
+    /* ── DEADLINE ── */
+    .deadline {
+      padding: 1.8rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: #fffbe6;
+      border-top: 3px solid var(--yellow);
+    }
+
+    .deadline-icon { font-size: 2rem; }
+
+    .deadline-text strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b8860b;
+      margin-bottom: 0.2rem;
+    }
+
+    .deadline-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      color: #888;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .footer-note strong {
+      color: var(--blue);
+      font-style: normal;
+    }
+
+    /* ── CTA BUTTON ── */
+    .cta-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 1rem 2.5rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(29,66,138,0.25);
+    }
+    .cta-btn:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .info-item:nth-child(odd) { border-right: none; }
+      .payment-amount { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-badge">Sandefjord Whites</div>
+    <h1>Sommer<span>fest</span><br>2026</h1>
+    <p class="hero-sub">Du er hjertelig velkommen!</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card">
+
+      <!-- INFO GRID -->
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-icon">📅</span>
+          <div class="info-label">Dato</div>
+          <div class="info-value">Fredag 27. juni</div>
+          <div class="info-sub">2026</div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🕕</span>
+          <div class="info-label">Tidspunkt</div>
+          <div class="info-value">Kl. 18:00</div>
+          <div class="info-sub">Dørene åpner fra 17:45</div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          <div class="info-label">Sted</div>
+          <div class="info-value">Storgata 2</div>
+          <div class="info-sub">Lokalene til Urmaker Næss</div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🎟️</span>
+          <div class="info-label">Arrangør</div>
+          <div class="info-value">Styret i<br>Sandefjord Whites</div>
+        </div>
+      </div>
+
+      <!-- PROGRAM -->
+      <div class="program">
+        <div class="section-title">Kvelden byr på</div>
+        <div class="program-items">
+          <div class="program-item">
+            <div class="program-dot"></div>
+            <div class="program-text">🍽️ Servering av mat og drikke</div>
+          </div>
+          <div class="program-item">
+            <div class="program-dot"></div>
+            <div class="program-text">🧠 Quiz – ledet av Magne</div>
+          </div>
+          <div class="program-item">
+            <div class="program-dot"></div>
+            <div class="program-text">⚽ Godt Leeds-selskap!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="payment">
+        <div class="section-title">Pris og betaling</div>
+        <div class="payment-amount">kr 300,–</div>
+        <div class="payment-desc">per person – inkluderer mat og drikke</div>
+        <div class="vipps-box">
+          <div class="vipps-icon">📱</div>
+          <div class="vipps-info">
+            <div class="vipps-name">Vipps til Bjørn Wirum</div>
+            <div class="vipps-number">907 93 800</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEADLINE -->
+      <div class="deadline">
+        <div class="deadline-icon">⚠️</div>
+        <div class="deadline-text">
+          <strong>Bindende påmelding innen</strong>
+          <div class="deadline-date">Fredag 12. juni 2026</div>
+        </div>
+      </div>
+
+      <!-- CTA BUTTON -->
+      <div style="padding: 2rem; text-align: center; background: var(--white);">
+        <a href="https://forms.gle/bMuyd1iUAdupbSGK6" target="_blank" class="cta-btn">
+          Meld deg på sommerfesten →
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.82rem; color: #999; line-height: 1.6;">
+          Maks 40 plasser – ved fullt hus gjelder betalingstidspunkt.<br>
+          Egenandel kr 300,– vippses til <strong style="color:#333;">90793800</strong> senest 12. juni.<br>
+          Påmelding er ikke gyldig før egenandel er betalt.<br><br>
+          Ikke medlem ennå? <a href="#" style="color: var(--blue); font-weight:700;">Meld deg inn her</a> – det koster kun kr 200,– en gang for alltid.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Spørsmål? Ta kontakt med <strong>styret i Sandefjord Whites</strong><br>
+    MOT, MARCIA, MAGNIFICO! 🤍💙
+  </div>
+
+</body>
+</html>
