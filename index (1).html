@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sandefjord Whites – Leeds United Supporterklubb</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --blue:      #1D428A;
+      --blue-dark: #0d2456;
+      --yellow:    #FFCD00;
+      --white:     #FAFAF8;
+      --cream:     #F2EDE4;
+      --gray:      #888;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,36,86,0.97);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2rem;
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+
+    .nav-logo span { color: var(--yellow); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--blue-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(255,205,0,0.025) 60px,
+          rgba(255,205,0,0.025) 61px
+        );
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 80px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      color: var(--yellow);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(255,205,0,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,205,0,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--blue-dark);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .about p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .about-divider {
+      width: 50px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 2rem auto 0;
+    }
+
+    /* ── CARDS ── */
+    .cards-section {
+      background: var(--blue-dark);
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .cards-section::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: 0; right: 0;
+      height: 80px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 0%);
+    }
+
+    .cards-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cards-section .section-label { color: rgba(255,205,0,0.7); }
+
+    .cards-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,205,0,0.15);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      text-align: left;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,205,0,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .card-link:hover { border-color: var(--yellow); }
+
+    /* ── MEMBERSHIP CTA ── */
+    .membership {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .membership h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      color: var(--blue-dark);
+      margin-bottom: 1rem;
+    }
+
+    .membership p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+    }
+
+    .price-tag {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--yellow);
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      padding: 0.5rem 1.5rem;
+      border-radius: 3px;
+      margin: 1rem 0 1.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.85rem;
+      border-top: 2px solid var(--yellow);
+    }
+
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="SandefjordWhitesLogo.png" alt="Sandefjord Whites logo"/>
+      Sandefjord <span>&nbsp;Whites</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#arrangementer">Arrangementer</a></li>
+      <li><a href="#bli-medlem">Bli medlem</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Leeds United Supporters Club · Sandefjord, Norge</div>
+    <img src="SandefjordWhitesLogo.png" alt="Sandefjord Whites" style="height: clamp(140px, 25vw, 220px); width: auto; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.05s ease both; filter: drop-shadow(0 8px 30px rgba(0,0,0,0.4));"/>
+    <h1>Sandefjord<br><em>Whites</em></h1>
+    <p class="hero-tagline">Alltid sammen — uansett resultat</p>
+    <div class="hero-buttons">
+      <a href="#bli-medlem" class="btn-primary">Bli medlem</a>
+      <a href="#arrangementer" class="btn-secondary">Arrangementer</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="om-oss">
+    <div class="section-label">Om oss</div>
+    <h2>Leeds-supportere<br>i hjertet av Vestfold</h2>
+    <p>
+      Sandefjord Whites er en ideell supporterklubb for Leeds United-fans i Sandefjord og omegn.
+      Vi samles til kamper, arrangementer og godt selskap – forenet av kjærligheten til The Whites.
+      Bli med du også!
+    </p>
+    <div class="about-divider"></div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="cards-section" id="arrangementer">
+    <div class="cards-inner">
+      <div class="section-label">Hva skjer</div>
+      <h2>Arrangementer & aktiviteter</h2>
+      <div class="cards-grid">
+
+        <div class="card">
+          <span class="card-icon">🌞</span>
+          <h3>Sommerfest 2026</h3>
+          <p>Fredag 27. juni kl. 18:00 hos Urmaker Næss, Storgata 2. Mat, drikke og quiz med Magne. Maks 40 plasser!</p>
+          <a href="sommerfest-2026.html" class="card-link">Se invitasjon og meld deg på →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">📺</span>
+          <h3>Kampvisninger</h3>
+          <p>Vi møtes på Corner i Sandefjord for å se Leeds United spille. Følg med her eller på sosiale medier for info om neste samling.</p>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">✈️</span>
+          <h3>På tur til Leeds?</h3>
+          <p>Drømmer du om å se Leeds på Elland Road? Vi har mange medlemmer med erfaring fra turer til Leeds – og de deler gjerne råd om reise, overnatting og alt du trenger å vite.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="membership" id="bli-medlem">
+    <div class="section-label">Bli medlem</div>
+    <h2>Livslangt medlemskap for en engangssum</h2>
+    <p>Meld deg inn i Sandefjord Whites og bli en del av fellesskapet. Du betaler én gang – og er medlem for livet.</p>
+    <div class="price-tag">kr 200,–</div>
+    <p>Betal på Vipps til <strong>Bjørn Wirum, 907 93 800</strong> og fyll ut skjemaet under. Medlemskapet er gyldig når betalingen er bekreftet av kasserer.</p>
+    <br/>
+    <a href="https://forms.gle/9pYiTCKhBok7czDQA" target="_blank" class="btn-primary">Fyll ut innmeldingsskjema →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Sandefjord Whites</strong> · Leeds United Supporters Club · Sandefjord, Norge</p>
+    <p style="margin-top:0.5rem;">Marching On Together! 🤍💙</p>
+  </footer>
+
+</body>
+</html>
