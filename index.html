@@ -3,33 +3,91 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sommerfest 2026 – Sandefjord Whites</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <title>Sandefjord Whites – Leeds United Supporterklubb</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     :root {
-      --blue: #1D428A;
+      --blue:      #1D428A;
       --blue-dark: #0d2456;
-      --yellow: #FFCD00;
-      --white: #FAFAF8;
-      --cream: #F5F0E8;
+      --yellow:    #FFCD00;
+      --white:     #FAFAF8;
+      --cream:     #F2EDE4;
+      --gray:      #888;
     }
 
     body {
       font-family: 'Lato', sans-serif;
       background: var(--cream);
       color: #222;
-      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,36,86,0.97);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2rem;
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+
+    .nav-logo span { color: var(--yellow); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
 
     /* ── HERO ── */
     .hero {
+      min-height: 100vh;
       background: var(--blue-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
       position: relative;
       overflow: hidden;
-      padding: 4rem 2rem 5rem;
-      text-align: center;
     }
 
     .hero::before {
@@ -38,398 +96,384 @@
       inset: 0;
       background:
         repeating-linear-gradient(
-          45deg,
+          -45deg,
           transparent,
-          transparent 40px,
-          rgba(255,205,0,0.03) 40px,
-          rgba(255,205,0,0.03) 41px
+          transparent 60px,
+          rgba(255,205,0,0.025) 60px,
+          rgba(255,205,0,0.025) 61px
         );
     }
 
-    .hero-badge {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--blue-dark);
-      font-family: 'Lato', sans-serif;
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 80px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
       font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      padding: 0.4rem 1.2rem;
-      border-radius: 2px;
-      margin-bottom: 1.5rem;
-      animation: fadeDown 0.6s ease both;
+      color: var(--yellow);
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s ease both;
     }
 
     .hero h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6.5rem);
       font-weight: 900;
       color: var(--white);
-      line-height: 1.05;
-      animation: fadeDown 0.6s 0.1s ease both;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    .hero h1 span {
+    .hero h1 em {
       color: var(--yellow);
       font-style: italic;
     }
 
-    .hero-sub {
-      margin-top: 1rem;
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.65);
+    .hero-tagline {
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.55);
       font-weight: 300;
-      letter-spacing: 1px;
-      animation: fadeDown 0.6s 0.2s ease both;
+      letter-spacing: 2px;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.2s ease both;
     }
 
-    .hero-divider {
-      width: 60px;
-      height: 3px;
-      background: var(--yellow);
-      margin: 2rem auto 0;
-      animation: fadeDown 0.6s 0.3s ease both;
-    }
-
-    /* ── MAIN CARD ── */
-    .card-wrap {
-      max-width: 700px;
-      margin: -2rem auto 3rem;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 4px;
-      box-shadow: 0 20px 60px rgba(13,36,86,0.15);
-      overflow: hidden;
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-
-    /* ── INFO GRID ── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-
-    .info-item {
-      padding: 2rem 2rem 1.8rem;
-      border-bottom: 1px solid #eee;
-      position: relative;
-    }
-
-    .info-item:nth-child(odd) {
-      border-right: 1px solid #eee;
-    }
-
-    .info-icon {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .info-label {
-      font-size: 0.7rem;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-
-    .info-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #111;
-      line-height: 1.3;
-    }
-
-    .info-sub {
-      font-size: 0.85rem;
-      color: #777;
-      margin-top: 0.2rem;
-    }
-
-    /* ── PROGRAM SECTION ── */
-    .program {
-      padding: 2rem 2rem 1.5rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    .section-title {
-      font-size: 0.7rem;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--blue);
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-
-    .program-items {
+    .hero-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .program-item {
-      display: flex;
-      align-items: center;
       gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s 0.3s ease both;
     }
 
-    .program-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+    .btn-primary {
+      display: inline-block;
       background: var(--yellow);
-      border: 2px solid var(--blue);
-      flex-shrink: 0;
-    }
-
-    .program-text {
-      font-size: 0.97rem;
-      color: #333;
-    }
-
-    /* ── PAYMENT SECTION ── */
-    .payment {
-      background: var(--blue);
-      padding: 2rem;
-      color: white;
-    }
-
-    .payment .section-title {
-      color: rgba(255,255,255,0.6);
-    }
-
-    .payment-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      color: var(--blue-dark);
       font-weight: 900;
-      color: var(--yellow);
-      line-height: 1;
-      margin-bottom: 0.3rem;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(255,205,0,0.3);
     }
 
-    .payment-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,205,0,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--blue-dark);
+      line-height: 1.2;
       margin-bottom: 1.5rem;
     }
 
-    .vipps-box {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,205,0,0.3);
+    .about p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .about-divider {
+      width: 50px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 2rem auto 0;
+    }
+
+    /* ── CARDS ── */
+    .cards-section {
+      background: var(--blue-dark);
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .cards-section::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: 0; right: 0;
+      height: 80px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 0%);
+    }
+
+    .cards-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cards-section .section-label { color: rgba(255,205,0,0.7); }
+
+    .cards-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,205,0,0.15);
       border-radius: 4px;
-      padding: 1rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      padding: 2.5rem 2rem;
+      text-align: left;
+      transition: background 0.2s, transform 0.2s;
     }
 
-    .vipps-icon { font-size: 1.8rem; }
-
-    .vipps-info { flex: 1; }
-
-    .vipps-name {
-      font-weight: 700;
-      font-size: 1rem;
-      color: white;
+    .card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
     }
 
-    .vipps-number {
-      font-size: 0.9rem;
-      color: var(--yellow);
-      font-family: 'Lato', monospace;
-      letter-spacing: 1px;
-    }
-
-    /* ── DEADLINE ── */
-    .deadline {
-      padding: 1.8rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      background: #fffbe6;
-      border-top: 3px solid var(--yellow);
-    }
-
-    .deadline-icon { font-size: 2rem; }
-
-    .deadline-text strong {
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
       display: block;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #b8860b;
-      margin-bottom: 0.2rem;
     }
 
-    .deadline-date {
+    .card h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       font-weight: 700;
-      color: #333;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
     }
 
-    /* ── FOOTER NOTE ── */
-    .footer-note {
+    .card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,205,0,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .card-link:hover { border-color: var(--yellow); }
+
+    /* ── MEMBERSHIP CTA ── */
+    .membership {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
       text-align: center;
-      padding: 2rem 1.5rem 3rem;
-      color: #888;
-      font-size: 0.9rem;
-      font-style: italic;
     }
 
-    .footer-note strong {
-      color: var(--blue);
-      font-style: normal;
+    .membership h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      color: var(--blue-dark);
+      margin-bottom: 1rem;
     }
 
-    /* ── CTA BUTTON ── */
-    .cta-btn {
+    .membership p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+    }
+
+    .price-tag {
       display: inline-block;
       background: var(--blue);
-      color: white;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 1px;
-      padding: 1rem 2.5rem;
+      color: var(--yellow);
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      padding: 0.5rem 1.5rem;
       border-radius: 3px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 16px rgba(29,66,138,0.25);
-    }
-    .cta-btn:hover {
-      background: var(--blue-dark);
-      transform: translateY(-2px);
+      margin: 1rem 0 1.5rem;
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.85rem;
+      border-top: 2px solid var(--yellow);
     }
+
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 520px) {
-      .info-grid { grid-template-columns: 1fr; }
-      .info-item:nth-child(odd) { border-right: none; }
-      .payment-amount { font-size: 2.2rem; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-buttons { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <div class="hero">
-    <div class="hero-badge">Sandefjord Whites</div>
-    <h1>Sommer<span>fest</span><br>2026</h1>
-    <p class="hero-sub">Du er hjertelig velkommen!</p>
-    <div class="hero-divider"></div>
-  </div>
-
-  <div class="card-wrap">
-    <div class="card">
-
-      <!-- INFO GRID -->
-      <div class="info-grid">
-        <div class="info-item">
-          <span class="info-icon">📅</span>
-          <div class="info-label">Dato</div>
-          <div class="info-value">Fredag 27. juni</div>
-          <div class="info-sub">2026</div>
-        </div>
-        <div class="info-item">
-          <span class="info-icon">🕕</span>
-          <div class="info-label">Tidspunkt</div>
-          <div class="info-value">Kl. 18:00</div>
-          <div class="info-sub">Dørene åpner fra 17:45</div>
-        </div>
-        <div class="info-item">
-          <span class="info-icon">📍</span>
-          <div class="info-label">Sted</div>
-          <div class="info-value">Storgata 2</div>
-          <div class="info-sub">Lokalene til Urmaker Næss</div>
-        </div>
-        <div class="info-item">
-          <span class="info-icon">🎟️</span>
-          <div class="info-label">Arrangør</div>
-          <div class="info-value">Styret i<br>Sandefjord Whites</div>
-        </div>
-      </div>
-
-      <!-- PROGRAM -->
-      <div class="program">
-        <div class="section-title">Kvelden byr på</div>
-        <div class="program-items">
-          <div class="program-item">
-            <div class="program-dot"></div>
-            <div class="program-text">🍽️ Servering av mat og drikke</div>
-          </div>
-          <div class="program-item">
-            <div class="program-dot"></div>
-            <div class="program-text">🧠 Quiz – ledet av Magne</div>
-          </div>
-          <div class="program-item">
-            <div class="program-dot"></div>
-            <div class="program-text">⚽ Godt Leeds-selskap!</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PAYMENT -->
-      <div class="payment">
-        <div class="section-title">Pris og betaling</div>
-        <div class="payment-amount">kr 300,–</div>
-        <div class="payment-desc">per person – inkluderer mat og drikke</div>
-        <div class="vipps-box">
-          <div class="vipps-icon">📱</div>
-          <div class="vipps-info">
-            <div class="vipps-name">Vipps til Bjørn Wirum</div>
-            <div class="vipps-number">907 93 800</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DEADLINE -->
-      <div class="deadline">
-        <div class="deadline-icon">⚠️</div>
-        <div class="deadline-text">
-          <strong>Bindende påmelding innen</strong>
-          <div class="deadline-date">Fredag 12. juni 2026</div>
-        </div>
-      </div>
-
-      <!-- CTA BUTTON -->
-      <div style="padding: 2rem; text-align: center; background: var(--white);">
-        <a href="https://forms.gle/bMuyd1iUAdupbSGK6" target="_blank" class="cta-btn">
-          Meld deg på sommerfesten →
-        </a>
-        <p style="margin-top: 1rem; font-size: 0.82rem; color: #999; line-height: 1.6;">
-          Maks 40 plasser – ved fullt hus gjelder betalingstidspunkt.<br>
-          Egenandel kr 300,– vippses til <strong style="color:#333;">90793800</strong> senest 12. juni.<br>
-          Påmelding er ikke gyldig før egenandel er betalt.<br><br>
-          Ikke medlem ennå? <a href="#" style="color: var(--blue); font-weight:700;">Meld deg inn her</a> – det koster kun kr 200,– en gang for alltid.
-        </p>
-      </div>
-
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="SandefjordWhitesLogo.png" alt="Sandefjord Whites logo"/>
+      Sandefjord <span>&nbsp;Whites</span>
     </div>
-  </div>
+    <ul class="nav-links">
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#arrangementer">Arrangementer</a></li>
+      <li><a href="#bli-medlem">Bli medlem</a></li>
+    </ul>
+  </nav>
 
-  <div class="footer-note">
-    Spørsmål? Ta kontakt med <strong>styret i Sandefjord Whites</strong><br>
-    MOT, MARCIA, MAGNIFICO! 🤍💙
-  </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Leeds United Supporters Club · Sandefjord, Norge</div>
+    <img src="SandefjordWhitesLogo.png" alt="Sandefjord Whites" style="height: clamp(140px, 25vw, 220px); width: auto; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.05s ease both; filter: drop-shadow(0 8px 30px rgba(0,0,0,0.4));"/>
+    <h1>Sandefjord<br><em>Whites</em></h1>
+    <p class="hero-tagline">Alltid sammen — uansett resultat</p>
+    <div class="hero-buttons">
+      <a href="#bli-medlem" class="btn-primary">Bli medlem</a>
+      <a href="#arrangementer" class="btn-secondary">Arrangementer</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="om-oss">
+    <div class="section-label">Om oss</div>
+    <h2>Leeds-supportere<br>i hjertet av Vestfold</h2>
+    <p>
+      Sandefjord Whites er en ideell supporterklubb for Leeds United-fans i Sandefjord og omegn.
+      Vi samles til kamper, arrangementer og godt selskap – forenet av kjærligheten til The Whites.
+      Bli med du også!
+    </p>
+    <div class="about-divider"></div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="cards-section" id="arrangementer">
+    <div class="cards-inner">
+      <div class="section-label">Hva skjer</div>
+      <h2>Arrangementer & aktiviteter</h2>
+      <div class="cards-grid">
+
+        <div class="card">
+          <span class="card-icon">🌞</span>
+          <h3>Sommerfest 2026</h3>
+          <p>Fredag 27. juni kl. 18:00 hos Urmaker Næss, Storgata 2. Mat, drikke og quiz med Magne. Maks 40 plasser!</p>
+          <a href="sommerfest-2026.html" class="card-link">Se invitasjon og meld deg på →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">📺</span>
+          <h3>Kampvisninger</h3>
+          <p>Vi møtes på Corner i Sandefjord for å se Leeds United spille. Følg med her eller på sosiale medier for info om neste samling.</p>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">✈️</span>
+          <h3>På tur til Leeds?</h3>
+          <p>Drømmer du om å se Leeds på Elland Road? Vi har mange medlemmer med erfaring fra turer til Leeds – og de deler gjerne råd om reise, overnatting og alt du trenger å vite.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="membership" id="bli-medlem">
+    <div class="section-label">Bli medlem</div>
+    <h2>Livslangt medlemskap for en engangssum</h2>
+    <p>Meld deg inn i Sandefjord Whites og bli en del av fellesskapet. Du betaler én gang – og er medlem for livet.</p>
+    <div class="price-tag">kr 200,–</div>
+    <p>Betal på Vipps til <strong>Bjørn Wirum, 907 93 800</strong> og fyll ut skjemaet under. Medlemskapet er gyldig når betalingen er bekreftet av kasserer.</p>
+    <br/>
+    <a href="https://forms.gle/bMuyd1iUAdupbSGK6" target="_blank" class="btn-primary">Fyll ut innmeldingsskjema →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Sandefjord Whites</strong> · Leeds United Supporters Club · Sandefjord, Norge</p>
+    <p style="margin-top:0.5rem;">Marching On Together! 🤍💙</p>
+  </footer>
 
 </body>
 </html>
