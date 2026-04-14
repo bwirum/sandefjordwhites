@@ -105,13 +105,24 @@
     }
 
     .hero::after {
-      content: '';
+      display: none;
+    }
+
+    .hero-wave {
       position: absolute;
-      bottom: -2px;
-      left: 0; right: 0;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      pointer-events: none;
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
       height: 80px;
-      background: var(--cream);
-      clip-path: ellipse(55% 100% at 50% 100%);
     }
 
     .hero-eyebrow {
@@ -247,12 +258,24 @@
     }
 
     .cards-section::before {
-      content: '';
+      display: none;
+    }
+
+    .cards-wave {
       position: absolute;
-      top: -2px; left: 0; right: 0;
+      top: -1px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      pointer-events: none;
+    }
+
+    .cards-wave svg {
+      display: block;
+      width: 100%;
       height: 80px;
-      background: var(--cream);
-      clip-path: ellipse(55% 100% at 50% 0%);
     }
 
     .cards-inner {
@@ -394,7 +417,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">
-      <img src="SandefjordWhitesLogoV2.png" alt="Sandefjord Whites logo"/>
+      <img src="Sandefjord_Whites_transp_logo.png" alt="Sandefjord Whites logo"/>
       Sandefjord <span>&nbsp;Whites</span>
     </div>
     <ul class="nav-links">
@@ -407,12 +430,17 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Leeds United Supporters Club · Sandefjord, Norge</div>
-    <img src="SandefjordWhitesLogoV2.png" alt="Sandefjord Whites" style="height: clamp(180px, 30vw, 280px); width: auto; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.05s ease both; filter: drop-shadow(0 8px 30px rgba(0,0,0,0.4));"/>
+    <img src="Sandefjord_Whites_transp_logo.png" alt="Sandefjord Whites" style="height: clamp(180px, 30vw, 280px); width: auto; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.05s ease both; filter: drop-shadow(0 8px 30px rgba(0,0,0,0.4));"/>
     <h1>Sandefjord<br><em>Whites</em></h1>
     <p class="hero-tagline">Alltid sammen — uansett resultat</p>
     <div class="hero-buttons">
       <a href="#bli-medlem" class="btn-primary">Bli medlem</a>
       <a href="#arrangementer" class="btn-secondary">Arrangementer</a>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z" fill="#F2EDE4"/>
+      </svg>
     </div>
   </section>
 
@@ -430,6 +458,11 @@
 
   <!-- CARDS -->
   <section class="cards-section" id="arrangementer">
+    <div class="cards-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,0 L0,0 Z" fill="#F2EDE4"/>
+      </svg>
+    </div>
     <div class="cards-inner">
       <div class="section-label">Hva skjer</div>
       <h2>Arrangementer & aktiviteter</h2>
@@ -438,7 +471,7 @@
         <div class="card">
           <span class="card-icon">🌞</span>
           <h3>Sommerfest 2026</h3>
-          <p>Lørdag 27. juni kl. 18:00 hos Urmaker Næss, Storgata 2. Mat, drikke og quiz med Magne. Maks 40 plasser!</p>
+          <p>Fredag 27. juni kl. 18:00 hos Urmaker Næss, Storgata 2. Mat, drikke og quiz med Magne. Maks 40 plasser!</p>
           <a href="sommerfest-2026.html" class="card-link">Se invitasjon og meld deg på →</a>
         </div>
 
